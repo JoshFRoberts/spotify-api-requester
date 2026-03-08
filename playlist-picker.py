@@ -1,10 +1,18 @@
+# where i come from, this script is called with a keybind
+# i press Super+p and the rest gets handled
+# the rest being an opened fzf window
+# aregeuested user choice
+# and an api request that plays the given playlist on the active player
+# NOTE: if no player currently plays anything the request fails
+# this is not yet fixed
+
 import os
 import sys
 import subprocess
 import requests
 from get_token import get_access_token
 
-PLAYLISTS_DIR = os.path.expanduser("~/Projekte/Playlists")
+PLAYLISTS_DIR = os.getenv("PLAYLISTS_FOLDER")
 
 def refresh_playlists():
     token = get_access_token()
@@ -59,6 +67,5 @@ if __name__ == "__main__":
         refresh_playlists()
 
     playlist_id = pick_playlist()
-    status = play_playlist(playlist_id)
-    print(f"Status: {status}")
+    play_playlist(playlist_id)
 
