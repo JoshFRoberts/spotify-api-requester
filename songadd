@@ -1,5 +1,0 @@
-#!/bin/bash
-
-link=$(wl-paste)
-
-python3 ~/Projekte/spotify-api-requester/requester.py "$link"
